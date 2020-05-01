@@ -1,0 +1,155 @@
+status=0;
+time=0;
+//var score[5]=[];
+var sw = {
+  etime : null, 
+  erst : null, 
+  ego : null,
+  timer : null, 
+  now : 0, 
+  init : function () {
+ 
+    sw.etime = document.getElementById("sw-time");
+    sw.erst = document.getElementById("sw-rst");
+    sw.ego = document.getElementById("sw-go");
+
+ 
+    sw.erst.addEventListener("click", sw.reset);
+    sw.erst.disabled = false;
+    sw.ego.addEventListener("click", sw.start);
+    sw.ego.disabled = false;
+  },
+
+  /* [ACTIONS] */
+  tick : function () {
+    if((res===20 && status===0) || (res===30 && status===1) ||(res===40 && status===2))
+   { var x9=document.getElementById('for2');
+    x9.innerHTML+=':'+ time;
+    res=0;status=0;
+       if (sw.timer !== null) { sw.stop(); 
+    }
+    sw.now= -2;
+    time=-1;
+    sw.tick();
+}
+    sw.now++;
+    time++;
+    var remain = sw.now;
+    var hours = Math.floor(remain / 3600);
+    remain -= hours * 3600;
+    var mins = Math.floor(remain / 60);
+    remain -= mins * 60;
+    var secs = remain;
+
+    if (hours<10) { hours = "0" + hours; }
+    if (mins<10) { mins = "0" + mins; }
+    if (secs<10) { secs = "0" + secs; }
+    sw.etime.innerHTML = hours + ":" + mins + ":" + secs;
+  },
+
+  start : function () {
+
+    sw.timer = setInterval(sw.tick, 1000);
+    sw.ego.value = "Stop";
+    sw.ego.removeEventListener("click", sw.start);
+    sw.ego.addEventListener("click", sw.stop);
+  },
+
+  stop  : function () {
+    clearInterval(sw.timer);
+    sw.timer = null;
+    sw.ego.value = "Start";
+    sw.ego.removeEventListener("click", sw.stop);
+    sw.ego.addEventListener("click", sw.start);
+  },
+
+  reset : function () {
+    if (sw.timer != null) { sw.stop(); 
+    }
+    sw.now = -1;
+    time=-1;
+    sw.tick();
+  }
+};
+
+window.addEventListener("load", sw.init)
+var res=0;
+
+function find(count,r){
+count=Number(count);
+r=Number(r);
+status=r;
+if(res === count-1){
+res++;
+if(r===0)
+s='a';
+else if(r===1)
+s='b';
+else s='c';
+
+s+=count;
+var z=document.getElementById(s);
+z.innerHTML='';
+}
+else return;
+}
+/*function feed(){
+    var x1=document.getElementById('a12').innerHTML;
+    x1.addEventListener("click", find(12));
+     var x2=document.getElementById('a4').innerHTML;
+     x2.addEventListener("click", find(4));
+      var x3=document.getElementById('a8').innerHTML;
+      x3.addEventListener("click", find(8));
+      var x4= document.getElementById('a19').innerHTML;
+      x4.addEventListener("click", find(19));
+       var x5=document.getElementById('a14').innerHTML;
+       x5.addEventListener("click", find(14));
+           var x6=document.getElementById('a3').innerHTML;
+           x6.addEventListener("click", find(3));
+     var x7=document.getElementById('a1').innerHTML;
+     x7.addEventListener("click", find(1));
+     var x8= document.getElementById('a2').innerHTML;
+     x8.addEventListener("click", find(2));
+      var x9= document.getElementById('a6').innerHTML;
+      x9.addEventListener("click", find(6));
+       var x10= document.getElementById('a5').innerHTML;
+       x10.addEventListener("click", find(5));
+           var x11=document.getElementById('a7').innerHTML;
+           x11.addEventListener("click", find(7));
+     var x12=document.getElementById('a9').innerHTML;x12.addEventListener("click", find(9));
+     var x13= document.getElementById('a10').innerHTML;
+     x13.addEventListener("click", find(10));
+      var x14 document.getElementById('a11').innerHTML;
+       x14.addEventListener("click", find(11));
+        var x15=document.getElementById('a13').innerHTML;
+        x15.addEventListener("click", find(13));
+          var x16=  document.getElementById('a15').innerHTML;
+           x16.addEventListener("click", find(15));
+    var x17= document.getElementById('a16').innerHTML;
+     x17.addEventListener("click", find(16));
+     var x18= document.getElementById('a17').innerHTML;
+      x18.addEventListener("click", find(17));
+       var x19=document.getElementById('a18').innerHTML;
+       x19.addEventListener("click", find(18));
+        var x20=document.getElementById('a20').innerHTML;
+        x20.addEventListener("click", find(20));
+}*/
+function fa(count){
+var x1= document.getElementById("container1");
+var x2 = document.getElementById("container2");
+var x3= document.getElementById("container3");
+if(count===0){
+x1.style.display='block';
+x2.style.display="none";
+x3.style.display="none";
+}
+else if(count===1){
+x2.style.display='block';
+x1.style.display="none";
+x3.style.display="none";
+}
+else{
+x3.style.display='block';
+x2.style.display="none";
+x1.style.display="none";
+}
